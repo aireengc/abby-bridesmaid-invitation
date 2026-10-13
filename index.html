@@ -1,1 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#241017">
+<title>Abby, Will You Be My Bridesmaid?</title>
+<style>
+:root{--wine:#681d32;--wine2:#35121f;--gold:#d8b46a;--ivory:#fff5e8;--ink:#28151b;--purple:#8e6bb8;--lavender:#c7b0e5;--deep-purple:#332044}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;color:var(--ivory);font-family:Georgia,'Times New Roman',serif;background:radial-gradient(ellipse at 50% 0%,#493052 0,#291a30 36%,#21121f 68%,#100b11 100%);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle at 12% 20%,#d8b46a22 0 1px,transparent 2px),radial-gradient(circle at 80% 34%,#fff0d522 0 1px,transparent 2px),radial-gradient(circle at 65% 80%,#d8b46a33 0 1px,transparent 2px);background-size:120px 120px,160px 160px,190px 190px;z-index:-1}
+main{width:min(720px,92vw);margin:auto;padding:34px 0 50px;text-align:center}
+.eyebrow{letter-spacing:.25em;text-transform:uppercase;font:11px Arial,sans-serif;color:var(--lavender)}
+h1{font-weight:normal;font-size:clamp(36px,8vw,64px);line-height:1.02;margin:14px 0;color:var(--ivory)}
+.script{font-style:italic;color:var(--gold)}
+.lead{font-size:17px;line-height:1.7;color:#f2dfd2;max-width:540px;margin:14px auto 24px}
+.scene{position:relative;min-height:255px;display:grid;place-items:center;margin:10px auto 20px}
+.suitcase{width:min(340px,82vw);height:205px;position:relative;filter:drop-shadow(0 20px 25px #0008);cursor:pointer;transition:transform .4s}
+.handle{position:absolute;left:39%;top:-20px;width:22%;height:34px;border:7px solid #a77d3b;border-bottom:0;border-radius:12px 12px 0 0}
+.case-base{position:absolute;inset:43px 0 0;background:linear-gradient(135deg,#76508f,#4b2a61 48%,#351b42);border:2px solid var(--gold);border-radius:15px 15px 22px 22px;box-shadow:inset 0 0 0 7px #d8b46a19}
+.case-base:before,.case-base:after{content:"";position:absolute;top:0;bottom:0;width:9px;background:#d8b46a55}
+.case-base:before{left:22px}.case-base:after{right:22px}
+.case-lid{position:absolute;z-index:2;left:0;right:0;top:32px;height:94px;border:2px solid var(--lavender);border-radius:15px 15px 8px 8px;background:linear-gradient(135deg,#9670b8,#69417f);transform-origin:top;transition:transform 1s cubic-bezier(.2,.8,.2,1);box-shadow:inset 0 0 0 7px #d8b46a19}
+.case-lid:after{content:"A ✦";position:absolute;inset:0;display:grid;place-items:center;color:#f0d9ff;font-size:28px;font-style:italic}
+.suitcase.open .case-lid{transform:rotateX(155deg) translateY(-8px)}
+.case-base .label{position:absolute;inset:30px 20px 15px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:var(--gold)}
+.label strong{font-size:25px;font-weight:normal;font-style:italic}.label span{font:10px Arial,sans-serif;letter-spacing:.22em}
+.ribbon{position:absolute;z-index:3;left:50%;top:87px;width:48px;height:70px;transform:translateX(-50%);background:linear-gradient(90deg,#d8b46a,#f5df9c,#b78b43);clip-path:polygon(0 0,100% 0,100% 75%,50% 100%,0 75%);transition:opacity .3s}
+.suitcase.open .ribbon{opacity:0}
+.hint{font:11px Arial,sans-serif;letter-spacing:.15em;text-transform:uppercase;color:#d7c0e5;margin-top:4px}
+.card{background:linear-gradient(145deg,#fff8ee,#ead8c6);color:var(--ink);border:1px solid var(--gold);border-radius:18px;padding:clamp(24px,5vw,42px);box-shadow:0 20px 50px #0005;max-width:590px;margin:20px auto;position:relative;display:none;animation:rise .8s ease both}
+.card.show{display:block}
+.card:before{content:"";position:absolute;inset:9px;border:1px solid #b68d4c77;border-radius:11px;pointer-events:none}
+.card h2{font-weight:normal;font-size:clamp(30px,6vw,43px);margin:4px 0 14px;color:#571b2d}
+.card p{font-size:17px;line-height:1.7;position:relative}
+.smallcaps{font:10px Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#946e36}
+.buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:24px;position:relative}
+button{border:1px solid var(--gold);border-radius:999px;padding:14px 23px;font-size:14px;cursor:pointer;transition:transform .2s,filter .2s}
+button:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.primary{background:var(--wine);color:#fff5e8}.secondary{background:transparent;color:#571b2d;border-color:#9d7540}
+#yesMessage{display:none;margin-top:20px;padding:16px;border-top:1px solid #b68d4c77;font-style:italic;color:#571b2d;font-size:19px}
+footer{font:10px Arial,sans-serif;letter-spacing:.15em;color:#c7b0e5;margin-top:26px}
+.confetti{position:fixed;top:-20px;width:8px;height:12px;z-index:5;animation:fall 3.6s linear forwards}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fall{to{transform:translateY(110vh) rotate(700deg);opacity:0}}
+@media(max-width:480px){main{padding-top:28px}.scene{min-height:230px}.suitcase{height:185px}.case-base{inset:40px 0 0}.case-lid{top:29px;height:85px}.ribbon{top:77px}.lead{font-size:16px}}
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">A little secret, just for you</div>
+  <h1>Abby, this is<br><span class="script">for you.</span></h1>
+  <p class="lead">Every beautiful wedding needs a few favorite people by the bride’s side. I have a little question for someone very special…</p>
 
+  <div class="scene">
+    <div class="suitcase" id="suitcase" role="button" tabindex="0" aria-label="Open the invitation suitcase">
+      <div class="handle"></div>
+      <div class="case-base"><div class="label"><strong>For Abby</strong><span>WITH LOVE & A LITTLE SPARKLE</span></div></div>
+      <div class="case-lid"></div>
+      <div class="ribbon"></div>
+    </div>
+  </div>
+  <div class="hint" id="hint">Tap the suitcase to open your surprise ✦</div>
+
+  <section class="card" id="invitation" aria-live="polite">
+    <div class="smallcaps">A special place in our story</div>
+    <h2>Will you be my<br><span class="script">Bridesmaid, Abby?</span></h2>
+    <p>As Matej and I begin our next chapter, I can’t imagine celebrating this once-in-a-lifetime moment without you beside me.</p>
+    <p>There will be happy tears, beautiful memories, a little chaos, lots of love—and I would be so happy to have you as part of it.</p>
+    <p class="script" style="font-size:23px;margin-bottom:4px">Will you stand by my side?</p>
+    <div class="buttons">
+      <button class="primary" id="yesBtn">Yes, of course! ♡</button>
+      <button class="secondary" id="maybeBtn">I need a hug first</button>
+    </div>
+    <div id="yesMessage">You just made this bride-to-be so happy! ♡ Let’s make the sweetest memories together.</div>
+  </section>
+  <footer>AIREEN & MATEJ · MAY 20, 2027 · WITH LOVE</footer>
+</main>
+<script>
+const suitcase=document.getElementById('suitcase');
+const invitation=document.getElementById('invitation');
+const hint=document.getElementById('hint');
+function openCase(){suitcase.classList.add('open');hint.textContent='A little surprise, just for you…';setTimeout(()=>{invitation.classList.add('show');hint.textContent='Your question awaits ♡';invitation.scrollIntoView({behavior:'smooth',block:'center'});},650);}
+suitcase.addEventListener('click',openCase);
+suitcase.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openCase();}});
+document.getElementById('yesBtn').addEventListener('click',()=>{
+ document.getElementById('yesMessage').style.display='block';
+ document.getElementById('yesBtn').textContent='It’s a YES! ♡';
+ for(let i=0;i<65;i++){const el=document.createElement('i');el.className='confetti';el.style.left=Math.random()*100+'vw';el.style.background=['#d8b46a','#8e6bb8','#c7b0e5','#fff0d8','#8d3046'][i%4];el.style.animationDelay=(Math.random()*1.2)+'s';el.style.transform='rotate('+Math.random()*360+'deg)';document.body.appendChild(el);setTimeout(()=>el.remove(),5000);}
+});
+document.getElementById('maybeBtn').addEventListener('click',()=>{
+ const msg=document.getElementById('yesMessage');msg.style.display='block';msg.textContent='Sending you the biggest virtual hug, Abby! ♡ No pressure—just lots of love.';
+});
+</script>
+</body>
+</html>
